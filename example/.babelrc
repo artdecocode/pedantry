@@ -1,0 +1,12 @@
+{
+  "plugins": [
+    [
+      "transform-rename-import",
+      {
+        "original": "pedantic",
+        "replacement": "../src"
+      }
+    ]
+  ],
+  "extends": "../.babelrc"
+}
