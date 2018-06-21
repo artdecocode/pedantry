@@ -1,46 +1,55 @@
 import { resolve } from 'path'
 import { createReadStream } from 'fs'
 import { PassThrough } from 'stream'
+import { debuglog } from 'util'
+import { getKeys } from './lib'
 
-// this needs to go in `wrote` once it's rewritten
+const LOG = debuglog('pedantry')
 
-const readFile = (path, name) => {
-  const p = resolve(path, name)
-  const rs = createReadStream(p)
-  return rs
-}
-
-const hasFile = (array, file) => {
-  return array.some(a => a == file)
-}
-
+/**
+ * @param {Pedantry} stream
+ * @param {string} path
+ * @param {object} content
+ */
 const processDir = async (stream, path, content) => {
   const k = Object.keys(content)
-  const hasIndex = hasFile(k, 'index.md')
-  const hasFooter = hasFile(k, 'footer.md')
 
-  const keys = [
-    ...(hasIndex ? ['index.md'] : []),
-    ...k.filter(a => !['index.md', 'footer.md'].includes(a)).sort(),
-    ...(hasFooter ? ['footer.md'] : []),
-  ]
+  const keys = getKeys(k)
 
-  await keys.reduce(async (acc, name) => {
-    await acc
+  const size = await keys.reduce(async (acc, name) => {
+    let totalSize = await acc
     const { type, content: dirContent } = content[name]
+    const fullPath = resolve(path, name)
+
+    let s
     if (type == 'File') {
-      await new Promise((r, j) => {
-        const rs = readFile(path, name)
-        rs.pipe(stream, { end: false })
-        rs.on('close', () => {
-          r()
-        })
-        rs.on('error', j)
-      })
+      s = await processFile(stream, fullPath)
     } else if (type == 'Directory') {
-      await processDir(stream, resolve(path, name), dirContent)
+      s = await processDir(stream, fullPath, dirContent)
     }
-  }, {})
+    totalSize += s
+    return totalSize
+  }, 0)
+
+  LOG('dir %s size: %s B', path, size)
+  return size
+}
+
+const processFile = async (stream, fullPath) => {
+  const size = await new Promise((r, j) => {
+    let s = 0
+    createReadStream(fullPath)
+      .on('data', (d) => {
+        s += d.byteLength
+      })
+      .on('close', () => {
+        r(s)
+      })
+      .on('error', j)
+      .pipe(stream, { end: false })
+  })
+  LOG('file %s :: %s B', fullPath, size)
+  return size
 }
 
 const p = async (stream, ...args) => {
@@ -50,13 +59,13 @@ const p = async (stream, ...args) => {
 
 export default class Pedantry extends PassThrough {
   /**
-   * Will read data from files in the directory
    * @constructor
+   * Upon creation, `Pedantry` will start reading files in the `source` directory recursively in the following order: the content of the `index.md` file will go first, then of all files and directories in the folder recursively in a sorted order, and the content of the `footer.md` file will go last if found.
    * @description
    * @param {string} source Path to the root directory.
    * @param {DirStructure} content Content as read by `wrote`.
    *
-   * @todo embed wrote's read dir structure
+   * @todo embed wrote's read dir structure (20% progress)
    * @todo implement reading only on read ie change mode
    */
   constructor(source, content) {

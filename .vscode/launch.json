@@ -19,6 +19,9 @@
         "test/spec",
         "-b",
         "-w"
+      ],
+      "skipFiles": [
+        "<node_internals>/**/*.js"
       ]
     }
   ]
