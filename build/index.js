@@ -13,7 +13,11 @@ var _stream = require("stream");
 
 var _util = require("util");
 
+var _readDirStructure = _interopRequireDefault(require("@wrote/read-dir-structure"));
+
 var _lib = require("./lib");
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 const LOG = (0, _util.debuglog)('pedantry');
 /**
@@ -60,27 +64,26 @@ const processFile = async (stream, fullPath) => {
   });
   LOG('file %s :: %s B', fullPath, size);
   return size;
-};
+}; // * @todo implement reading only on read ie change mode
 
-const p = async (stream, ...args) => {
-  await processDir(stream, ...args);
-  stream.end();
-};
 
 class Pedantry extends _stream.PassThrough {
   /**
    * @constructor
    * Upon creation, `Pedantry` will start reading files in the `source` directory recursively in the following order: the content of the `index.md` file will go first, then of all files and directories in the folder recursively in a sorted order, and the content of the `footer.md` file will go last if found.
-   * @description
-   * @param {string} source Path to the root directory.
-   * @param {DirStructure} content Content as read by `wrote`.
    *
-   * @todo embed wrote's read dir structure (20% progress)
-   * @todo implement reading only on read ie change mode
+   * @param {string} source Path to the root directory.
    */
-  constructor(source, content) {
+  constructor(source) {
     super();
-    p(this, source, content);
+
+    (async () => {
+      const {
+        content
+      } = await (0, _readDirStructure.default)(source);
+      await processDir(this, source, content);
+      this.end();
+    })();
   }
 
 }
