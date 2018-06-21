@@ -22,6 +22,16 @@ const T = {
     const res = await promise
     await test('compiled.md', res.trim())
   },
+  async 'emits an error event'() {
+    const s = 'not-a-source'
+    const pedantry = new Pedantry(s)
+    const error = await new Promise(r => {
+      pedantry.once('error', (err) => {
+        r(err)
+      })
+    })
+    equal(error.message, `ENOENT: no such file or directory, lstat '${s}'`)
+  },
 }
 
 export default T

@@ -12,7 +12,7 @@ const LOG = debuglog('pedantry')
  * @param {string} path
  * @param {object} content
  */
-const processDir = async (stream, path, content) => {
+const processDir = async (stream, path, content = {}) => {
   const k = Object.keys(content)
 
   const keys = getKeys(k)
@@ -46,7 +46,9 @@ const processFile = async (stream, fullPath) => {
       .on('close', () => {
         r(s)
       })
-      .on('error', j)
+      .on('error', (err) => {
+        j(err)
+      })
       .pipe(stream, { end: false })
   })
   LOG('file %s :: %s B', fullPath, size)
@@ -65,9 +67,20 @@ export default class Pedantry extends PassThrough {
   constructor(source) {
     super()
     ;(async () => {
-      const { content } = await readDirStructure(source)
-      await processDir(this, source, content)
-      this.end()
+      let content
+      try {
+        ({ content } = await readDirStructure(source))
+      } catch (err) {
+        const e = new Error(err.message)
+        this.emit('error', e)
+      }
+      try {
+        await processDir(this, source, content)
+      } catch (err) {
+        this.emit('error', err)
+      } finally {
+        this.end()
+      }
     })()
   }
 }
