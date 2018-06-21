@@ -1,6 +1,5 @@
 import { resolve } from 'path'
 import Catchment from 'catchment'
-import { readDirStructure } from 'wrote'
 import { debuglog } from 'util'
 
 const LOG = debuglog('pedantry')
@@ -9,20 +8,12 @@ const FIXTURES = resolve(__dirname, '../fixtures')
 
 const SOURCE = 'test/fixtures/directory'
 
-const rds = (async () => {
-  const p = resolve(FIXTURES, 'directory')
-  const { content } = await readDirStructure(p)
-  LOG('directory %s read', p)
-  return content
-})()
-
 /**
  * A testing context for the package.
  */
 export default class Context {
-  async _init() {
-    this._content = await rds
-  }
+  // async _init() {
+  // }
   /**
    * Example method.
    */

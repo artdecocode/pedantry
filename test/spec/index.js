@@ -13,11 +13,11 @@ const T = {
     equal(typeof Pedantry, 'function')
   },
   async 'reads the directory and puts files together'(
-    { source, content, catchment: { catchment, promise }, SNAPSHOT_DIR },
+    { source, catchment: { catchment, promise }, SNAPSHOT_DIR },
     { setDir, test },
   ) {
     setDir(SNAPSHOT_DIR)
-    const pedantry = new Pedantry(source, content)
+    const pedantry = new Pedantry(source)
     pedantry.pipe(catchment)
     const res = await promise
     await test('compiled.md', res.trim())

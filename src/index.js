@@ -2,6 +2,7 @@ import { resolve } from 'path'
 import { createReadStream } from 'fs'
 import { PassThrough } from 'stream'
 import { debuglog } from 'util'
+import readDirStructure from '@wrote/read-dir-structure'
 import { getKeys } from './lib'
 
 const LOG = debuglog('pedantry')
@@ -52,24 +53,21 @@ const processFile = async (stream, fullPath) => {
   return size
 }
 
-const p = async (stream, ...args) => {
-  await processDir(stream, ...args)
-  stream.end()
-}
+// * @todo implement reading only on read ie change mode
 
 export default class Pedantry extends PassThrough {
   /**
    * @constructor
    * Upon creation, `Pedantry` will start reading files in the `source` directory recursively in the following order: the content of the `index.md` file will go first, then of all files and directories in the folder recursively in a sorted order, and the content of the `footer.md` file will go last if found.
-   * @description
-   * @param {string} source Path to the root directory.
-   * @param {DirStructure} content Content as read by `wrote`.
    *
-   * @todo embed wrote's read dir structure (20% progress)
-   * @todo implement reading only on read ie change mode
+   * @param {string} source Path to the root directory.
    */
-  constructor(source, content) {
+  constructor(source) {
     super()
-    p(this, source, content)
+    ;(async () => {
+      const { content } = await readDirStructure(source)
+      await processDir(this, source, content)
+      this.end()
+    })()
   }
 }
