@@ -652,9 +652,9 @@ doctrine@^2.1.0:
   dependencies:
     esutils "^2.0.2"
 
-documentary@1.4.2:
-  version "1.4.2"
-  resolved "https://registry.yarnpkg.com/documentary/-/documentary-1.4.2.tgz#5c0f2d0dc617d4808f412b7e658f5e67f0af27f8"
+documentary@1.5.0:
+  version "1.5.0"
+  resolved "https://registry.yarnpkg.com/documentary/-/documentary-1.5.0.tgz#e0c5ff8f34da3f0ff274df0536f214e17047ed30"
   dependencies:
     argufy "1.1.2"
     catchment "2.0.1"
