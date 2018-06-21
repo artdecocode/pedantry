@@ -2,5 +2,5 @@
 
 ### 1.0.0
 
-- Create `pedantic` with [`mnp`][https://mnpjs.org]
+- Create `pedantry` with [`mnp`][https://mnpjs.org]
 - [repository]: `src`, `test`

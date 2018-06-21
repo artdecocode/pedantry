@@ -1,21 +1,21 @@
-# pedantic
+# pedantry
 
-[![npm version](https://badge.fury.io/js/pedantic.svg)](https://badge.fury.io/js/pedantic)
+[![npm version](https://badge.fury.io/js/pedantry.svg)](https://badge.fury.io/js/pedantry)
 
-`pedantic` is a new Node.js npm package. How to read a directory with files as a stream in Node.js?
+`pedantry` is a new Node.js npm package. How to read a directory with files as a stream in Node.js?
 
 ```sh
-yarn add -E pedantic
+yarn add -E pedantry
 ```
 
-## `pedantic():void`
+## `pedantry():void`
 
 Call this function to get a result you want.
 
 ```js
-const pedantic = require('pedantic')
+const pedantry = require('pedantry')
 
-pedantic()
+pedantry()
 ```
 
 ---

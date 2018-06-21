@@ -1,5 +1,5 @@
-import pedantic from 'pedantic'
+import pedantry from 'pedantry'
 
 (async () => {
-  await pedantic()
+  await pedantry()
 })()

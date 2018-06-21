@@ -1,15 +1,15 @@
 import { equal } from 'zoroaster/assert'
 import Context from '../context'
-import pedantic from '../../src'
+import pedantry from '../../src'
 
 /** @type {Object.<string, (c: Context)>} */
 const T = {
   context: Context,
   'is a function'() {
-    equal(typeof pedantic, 'function')
+    equal(typeof pedantry, 'function')
   },
   async 'calls package without error'() {
-    await pedantic()
+    await pedantry()
   },
   async 'calls test context method'({ example }) {
     await example()

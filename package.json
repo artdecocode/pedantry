@@ -1,5 +1,5 @@
 {
-  "name": "pedantic",
+  "name": "pedantry",
   "version": "1.0.0",
   "description": "How to read a directory with files as a stream in Node.js?",
   "main": "build",
@@ -19,17 +19,17 @@
   ],
   "repository": {
     "type": "git",
-    "url": "git://github.com/artdecocode/pedantic.git"
+    "url": "git://github.com/artdecocode/pedantry.git"
   },
   "keywords": [
-    "pedantic"
+    "pedantry"
   ],
   "author": "Anton <anton@adc.sh>",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/artdecocode/pedantic/issues"
+    "url": "https://github.com/artdecocode/pedantry/issues"
   },
-  "homepage": "https://github.com/artdecocode/pedantic#readme",
+  "homepage": "https://github.com/artdecocode/pedantry#readme",
   "devDependencies": {
     "@babel/cli": "7.0.0-beta.51",
     "@babel/core": "7.0.0-beta.51",

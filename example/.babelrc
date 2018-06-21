@@ -3,7 +3,7 @@
     [
       "transform-rename-import",
       {
-        "original": "pedantic",
+        "original": "pedantry",
         "replacement": "../src"
       }
     ]
