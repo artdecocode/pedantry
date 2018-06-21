@@ -41,19 +41,18 @@ export default class Context {
   }
   get catchment() {
     // console.log('getting catchment actually')
-    const rs = new PassThrough()
-    const c = new Catchment({ rs })
-    rs.pipe(c)
-    const promise = (async () => {
-      const res = await c.promise
-      const { length } = await c.promise
-      LOG('catchment resolved %s B', length)
-      return res
-    })()
+    const catchment = new Catchment()
     return {
-      promise,
-      stream: rs,
+      catchment,
+      promise: catchment.promise,
     }
+    // const promise = (async () => {
+    //   const res = await c.promise
+    //   const { length } = await c.promise
+    //   LOG('catchment resolved %s B', length)
+    //   return res
+    // })()
+    // return promise
   }
   get source() {
     return SOURCE

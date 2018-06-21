@@ -1,3 +1,3 @@
-# Index.mdma
+# Index.md
 
-There's a fine line between line and line.
+anything is something worth discovering

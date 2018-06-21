@@ -8,15 +8,11 @@ const T = {
   'is a function'() {
     equal(typeof Pedantry, 'function')
   },
-  async 'calls package without error'({ source, content, catchment: { promise, stream } }) {
+  async 'calls package without error'({ source, content, catchment: { catchment, promise } }) {
     const pedantry = new Pedantry(source, content)
-    pedantry.pipe(stream)
+    pedantry.pipe(catchment)
     const res = await promise
-    console.log(res)
   },
-  // async 'calls test context method'({ example }) {
-  //   await example()
-  // },
 }
 
 export default T

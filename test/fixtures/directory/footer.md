@@ -1,4 +1,4 @@
 
 ---
 
-Never decline.
+Kings of medicine.
