@@ -1,7 +1,7 @@
 {
   "name": "pedantry",
   "version": "1.0.0",
-  "description": "How to read a directory with files as a stream in Node.js?",
+  "description": "Read a directory recursively as a stream in Node.js.",
   "main": "build",
   "scripts": {
     "t": "zoroaster -b",
@@ -23,7 +23,12 @@
     "url": "git://github.com/artdecocode/pedantry.git"
   },
   "keywords": [
-    "pedantry"
+    "pedantry",
+    "read",
+    "directory",
+    "stream",
+    "fs",
+    "filesystem"
   ],
   "author": "Anton <anton@adc.sh>",
   "license": "MIT",

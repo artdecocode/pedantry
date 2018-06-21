@@ -12,7 +12,7 @@ yarn add -E pedantry
 
 - [Table Of Contents](#table-of-contents)
 - [API](#api)
-- [`constructor(source: string): Pedantry`](#constructorsource-string-pedantry)
+  * [`constructor(source: string): Pedantry`](#constructorsource-string-pedantry)
 
 ## API
 
@@ -22,7 +22,7 @@ The main export of the program is the `Pedantry` duplex stream which should only
 import Pedantry from 'pedantry'
 ```
 
-## `constructor(`<br/>&nbsp;&nbsp;`source: string,`<br/>`): Pedantry`
+### `constructor(`<br/>&nbsp;&nbsp;`source: string,`<br/>`): Pedantry`
 
 Upon creation, `Pedantry` will start reading files in the `source` directory recursively in the following order:
 

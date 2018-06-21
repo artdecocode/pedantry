@@ -20,7 +20,7 @@ The main export of the program is the `Pedantry` duplex stream which should only
 import Pedantry from 'pedantry'
 ```
 
-```## constructor => Pedantry
+```### constructor => Pedantry
 [
   ["source", "string"]
 ]
