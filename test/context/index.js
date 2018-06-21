@@ -1,9 +1,28 @@
+import { resolve } from 'path'
+import Catchment from 'catchment'
+import { PassThrough } from 'stream'
+import { readDirStructure } from 'wrote'
+import { debuglog } from 'util'
+
+const LOG = debuglog('pedantry')
+
+const FIXTURES = resolve(__dirname, '../fixtures')
+
+const SOURCE = 'test/fixtures/directory'
+
+const rds = (async () => {
+  const p = resolve(FIXTURES, 'directory')
+  const { content } = await readDirStructure(p)
+  LOG('directory %s read', p)
+  return content
+})()
+
 /**
  * A testing context for the package.
  */
 export default class Context {
   async _init() {
-    console.log('init context')
+    this._content = await rds
   }
   /**
    * Example method.
@@ -11,7 +30,32 @@ export default class Context {
   example() {
     return 'OK'
   }
+  get content() {
+    return this._content
+  }
   async _destroy() {
     console.log('destroy context')
+  }
+  get fixture() {
+    return resolve(FIXTURES, 'directory')
+  }
+  get catchment() {
+    // console.log('getting catchment actually')
+    const rs = new PassThrough()
+    const c = new Catchment({ rs })
+    rs.pipe(c)
+    const promise = (async () => {
+      const res = await c.promise
+      const { length } = await c.promise
+      LOG('catchment resolved %s B', length)
+      return res
+    })()
+    return {
+      promise,
+      stream: rs,
+    }
+  }
+  get source() {
+    return SOURCE
   }
 }

@@ -48,8 +48,19 @@ const p = async (stream, ...args) => {
   stream.end()
 }
 
-export default function createDirStream(source, content) {
-  const stream = new PassThrough()
-  p(stream, source, content)
-  return stream
+export default class Pedantry extends PassThrough {
+  /**
+   * Will read data from files in the directory
+   * @constructor
+   * @description
+   * @param {string} source Path to the root directory.
+   * @param {DirStructure} content Content as read by `wrote`.
+   *
+   * @todo embed wrote's read dir structure
+   * @todo implement reading only on read ie change mode
+   */
+  constructor(source, content) {
+    super()
+    p(this, source, content)
+  }
 }
