@@ -10,8 +10,9 @@
     "test-all": "yarn-s test test-build",
     "test-watch": "yarn test -w",
     "lint": "eslint .",
+    "doc": "doc README-source.md -o README.md",
     "e": "node example",
-    "example/": "yarn e example/example.js",
+    "example/": "yarn e example/Pedantry.js",
     "build": "babel src --out-dir build --source-maps"
   },
   "files": [
@@ -44,5 +45,8 @@
     "snapshot-context": "2.0.1",
     "yarn-s": "1.1.0",
     "zoroaster": "2.1.0"
+  },
+  "dependencies": {
+    "@wrote/read-dir-structure": "1.0.0"
   }
 }
