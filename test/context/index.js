@@ -1,6 +1,5 @@
 import { resolve } from 'path'
 import Catchment from 'catchment'
-import { PassThrough } from 'stream'
 import { readDirStructure } from 'wrote'
 import { debuglog } from 'util'
 
@@ -33,26 +32,21 @@ export default class Context {
   get content() {
     return this._content
   }
-  async _destroy() {
-    console.log('destroy context')
-  }
+  // async _destroy() {
+  //   console.log('destroy context')
+  // }
   get fixture() {
     return resolve(FIXTURES, 'directory')
   }
+  get SNAPSHOT_DIR() {
+    return resolve(__dirname, '../snapshot')
+  }
   get catchment() {
-    // console.log('getting catchment actually')
     const catchment = new Catchment()
     return {
       catchment,
       promise: catchment.promise,
     }
-    // const promise = (async () => {
-    //   const res = await c.promise
-    //   const { length } = await c.promise
-    //   LOG('catchment resolved %s B', length)
-    //   return res
-    // })()
-    // return promise
   }
   get source() {
     return SOURCE

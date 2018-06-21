@@ -5,7 +5,6 @@
  */
 export const excludeReducer = (acc, current) => {
   const [ok, ex] = acc
-  // const i = ex.indexOf(current)
   let i
   if (!ex.length || (i = ex.indexOf(current)) == -1) {
     return [
