@@ -1,3 +1,4 @@
+
 ## Mikhail Bulgakov, The Master and Margarita
 
 “The brick is neither here nor there,' interrupted the stranger in an imposing fashion, 'it never merely falls on someone's head from out of nowhere. In your case, I can assure you that a brick poses no threat whatsoever. You will die another kind of death."
