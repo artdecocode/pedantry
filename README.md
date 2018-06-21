@@ -32,7 +32,7 @@ Upon creation, `Pedantry` will start reading files in the `source` directory rec
 
 Given the directory structure:
 
-```fs
+```m
 example/test
 ├── 1-words.md
 ├── 2-believe.md

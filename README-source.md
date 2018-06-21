@@ -36,14 +36,7 @@ Upon creation, `Pedantry` will start reading files in the `source` directory rec
 
 Given the directory structure:
 
-```fs
-example/test
-├── 1-words.md
-├── 2-believe.md
-├── 3-brick.md
-├── footer.md
-└── index.md
-```
+%TREE example/test%
 
 The usage of `Pedantry` is as below:
 
