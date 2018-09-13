@@ -1,7 +1,7 @@
 
 ## TODO
 
-- [ ] Add todo list.
+- [ ] Add a todo list item.
 
 ## Copyright
 
