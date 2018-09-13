@@ -1,3 +1,7 @@
+// compiles a directory
+test/fixture/directory
+
+/* expected */
 # Index.md
 
 anything is something worth discovering
@@ -18,7 +22,7 @@ Your heart.
 
 ## wrote
 
-wrote to the queen about my hearbreak but she didn't answer
+wrote to the queen about my heartbreak but she didn't answer
 
 ## This is 🚰 water.
 
@@ -32,3 +36,4 @@ when the code is gone
 ---
 
 Kings of medicine.
+/**/

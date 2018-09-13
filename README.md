@@ -13,6 +13,8 @@ yarn add -E pedantry
 - [Table Of Contents](#table-of-contents)
 - [API](#api)
   * [`constructor(source: string): Pedantry`](#constructorsource-string-pedantry)
+- [TODO](#todo)
+- [Copyright](#copyright)
 
 ## API
 
@@ -43,7 +45,7 @@ example/test
 
 The usage of `Pedantry` is as below:
 
-```javascript
+```js
 import Catchment from 'catchment'
 import Pedantry from 'pedantry'
 
@@ -60,8 +62,12 @@ import Pedantry from 'pedantry'
 })()
 ```
 
----
+## TODO
 
-(c) [Art Deco Code][1] 2018
+- [ ] Add todo list.
+
+## Copyright
+
+(c) [Art Deco][1] 2018
 
 [1]: https://artdeco.bz

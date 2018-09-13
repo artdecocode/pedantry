@@ -1,4 +1,0 @@
-
----
-
-Kings of medicine.
