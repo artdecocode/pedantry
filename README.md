@@ -12,9 +12,11 @@ yarn add -E pedantry
 
 - [Table Of Contents](#table-of-contents)
 - [API](#api)
-- [`constructor(source: string, options?: Options): Pedantry`](#constructorsource-stringoptions-options-pedantry)
-  * [`Options`](#options)
-- [Reverse Order](#reverse-order)
+- [class `Pedantry`](#class-pedantry)
+  * [`constructor(source: string, options?: Options): Pedantry`](#constructorsource-stringoptions-options-pedantry)
+    * [`Options`](#options)
+  * [Reverse Order](#reverse-order)
+  * [Events](#events)
 - [TODO](#todo)
 - [Copyright](#copyright)
 
@@ -26,7 +28,11 @@ The main export of the program is the `Pedantry` duplex stream which should only
 import Pedantry from 'pedantry'
 ```
 
-## `constructor(`<br/>&nbsp;&nbsp;`source: string,`<br/>&nbsp;&nbsp;`options?: Options,`<br/>`): Pedantry`
+## class `Pedantry`
+
+A _Pedantry_ instance reads files in order one-by-one and pushes the results further down the pipe.
+
+### `constructor(`<br/>&nbsp;&nbsp;`source: string,`<br/>&nbsp;&nbsp;`options?: Options,`<br/>`): Pedantry`
 
 Create a new readable stream. Upon creation, `Pedantry` will start reading files in the `source` directory recursively in the following order:
 
@@ -110,7 +116,7 @@ off!”
 [source](https://www.goodreads.com/work/quotes/876183?page=2)
 ```
 
-## Reverse Order
+### Reverse Order
 
 To print in reverse order, the `reverse` option can be set. This feature could be useful when writing a blog, for example, as 23 will follow 22, and in the output it will be printed first.
 
@@ -143,6 +149,26 @@ index.md
 21-hello.md
 2-test.md
 1-file.md
+footer.md
+```
+
+### Events
+
+The _Pedantry_ stream will emit `file` events when a file is started to be read. The content of this event is a path to the currently read file relative to the source directory.
+
+```js
+import Pedantry from 'pedantry'
+
+const pedantry = new Pedantry('example/simple-test')
+pedantry.on('file', f => console.log(f))
+```
+
+```fs
+index.md
+1-file.md
+2-test.md
+21-hello.md
+100-world.md
 footer.md
 ```
 

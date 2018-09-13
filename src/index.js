@@ -69,7 +69,6 @@ export default class Pedantry extends PassThrough {
   /**
    * @constructor
    * Upon creation, `Pedantry` will start reading files in the `source` directory recursively in the following order: the content of the `index.md` file will go first, then of all files and directories in the folder recursively in a sorted order, and the content of the `footer.md` file will go last if found.
-   *
    * @param {string} source Path to the root directory.
    * @param {Options} options Options for Pedantry.
  * @param {boolean} [options.reverse=false] Whether to print files in reverse order, i.e., `30-file.md` before `1-file.md`. Default `false`.
@@ -97,6 +96,12 @@ export default class Pedantry extends PassThrough {
     })()
   }
 }
+
+/**
+ * A file event.
+ * @event Pedantry#file
+ * @param {string} file A path to the file currently being processed relative to the `Pedantry` source.
+ */
 
 /* documentary types/index.xml */
 /**

@@ -1,5 +1,9 @@
 
-```## constructor => Pedantry
+## class `Pedantry`
+
+A _Pedantry_ instance reads files in order one-by-one and pushes the results further down the pipe.
+
+```### constructor => Pedantry
 [
   ["source", "string"],
   ["options?", "Options"]
@@ -26,7 +30,7 @@ The usage of `Pedantry` is as below:
 
 %FORK-markdown example example/Pedantry.js%
 
-## Reverse Order
+### Reverse Order
 
 To print in reverse order, the `reverse` option can be set. This feature could be useful when writing a blog, for example, as 23 will follow 22, and in the output it will be printed first.
 
@@ -39,3 +43,11 @@ It could be printed in reverse.
 %EXAMPLE: example/reverse.js, ../src => pedantry%
 
 %FORK-markdown example example/reverse.js%
+
+### Events
+
+The _Pedantry_ stream will emit `file` events when a file is started to be read. The content of this event is a path to the currently read file relative to the source directory.
+
+%EXAMPLE: example/events.js, ../src => pedantry%
+
+%FORK-fs example example/events.js%
