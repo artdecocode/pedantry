@@ -7,13 +7,10 @@ const { getKeys } = require('./lib');
 
 const LOG = debuglog('pedantry')
 
-/**
- * @param {Pedantry} stream
- * @param {string} path
- * @param {object} content
- * @param {boolean} [reverse=false]
- */
-const processDir = async (stream, source, path, content = {}, reverse = false) => {
+const processDir = async ({
+  stream, source, path = '.', content = {}, reverse = false,
+  addNewLine,
+}) => {
   const k = Object.keys(content)
 
   const keys = getKeys(k, reverse)
@@ -25,9 +22,14 @@ const processDir = async (stream, source, path, content = {}, reverse = false) =
 
     let s
     if (type == 'File') {
-      s = await processFile(stream, source, relPath)
+      s = await processFile({
+        stream, source, path: relPath, addNewLine,
+      })
     } else if (type == 'Directory') {
-      s = await processDir(stream, source, relPath, dirContent, reverse)
+      s = await processDir({
+        stream, source, path: relPath, content: dirContent, reverse,
+        addNewLine,
+      })
     }
     totalSize += s
     return totalSize
@@ -38,13 +40,17 @@ const processDir = async (stream, source, path, content = {}, reverse = false) =
 }
 
 /**
- *
- * @param {Pedantry} stream
- * @param {string} fullPath
+ * @param {{ stream: Pedantry}} options
  */
-const processFile = async (stream, source, path) => {
+const processFile = async (options) => {
+  const {
+    stream, source, path, addNewLine,
+  } = options
   const fullPath = join(source, path)
   stream.emit('file', path)
+  if (addNewLine && !stream.justStarted) {
+    stream.push('\n')
+  }
   const size = await new Promise((r, j) => {
     let s = 0
     createReadStream(fullPath)
@@ -59,6 +65,7 @@ const processFile = async (stream, source, path) => {
       })
       .pipe(stream, { end: false })
   })
+  stream.justStarted = false
   LOG('file %s :: %s B', fullPath, size)
   return size
 }
@@ -72,12 +79,15 @@ const processFile = async (stream, source, path) => {
    * @param {string} source Path to the root directory.
    * @param {Options} options Options for Pedantry.
  * @param {boolean} [options.reverse=false] Whether to print files in reverse order, i.e., `30-file.md` before `1-file.md`. Default `false`.
+ * @param {boolean} [options.addNewLine=false] Add a `\n` symbol between the content of each file. Default `false`.
    */
   constructor(source, options = {}) {
     const {
       reverse = false,
+      addNewLine = false,
     } = options
     super()
+    this.justStarted = true
     ;(async () => {
       let content
       try {
@@ -87,7 +97,13 @@ const processFile = async (stream, source, path) => {
         this.emit('error', e)
       }
       try {
-        await processDir(this, source, '.', content, reverse)
+        await processDir({
+          stream: this,
+          source,
+          content,
+          reverse,
+          addNewLine,
+        })
       } catch (err) {
         this.emit('error', err)
       } finally {
@@ -107,6 +123,7 @@ const processFile = async (stream, source, path) => {
 /**
  * @typedef {Object} Options Options for Pedantry.
  * @prop {boolean} [reverse=false] Whether to print files in reverse order, i.e., `30-file.md` before `1-file.md`. Default `false`.
+ * @prop {boolean} [addNewLine=false] Add a `\n` symbol between the content of each file. Default `false`.
  */
 
 

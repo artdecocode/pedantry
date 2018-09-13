@@ -79,6 +79,7 @@ export default class Pedantry extends PassThrough {
    * @param {string} source Path to the root directory.
    * @param {Options} options Options for Pedantry.
  * @param {boolean} [options.reverse=false] Whether to print files in reverse order, i.e., `30-file.md` before `1-file.md`. Default `false`.
+ * @param {boolean} [options.addNewLine=false] Add a `\n` symbol between the content of each file. Default `false`.
    */
   constructor(source, options = {}) {
     const {
@@ -122,4 +123,5 @@ export default class Pedantry extends PassThrough {
 /**
  * @typedef {Object} Options Options for Pedantry.
  * @prop {boolean} [reverse=false] Whether to print files in reverse order, i.e., `30-file.md` before `1-file.md`. Default `false`.
+ * @prop {boolean} [addNewLine=false] Add a `\n` symbol between the content of each file. Default `false`.
  */
