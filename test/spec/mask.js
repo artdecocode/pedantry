@@ -4,7 +4,9 @@ import Pedantry from '../../src'
 
 const ts = makeTestSuite('test/mask', {
   async getResults(input) {
-    const pedantry = new Pedantry(input)
+    const [path, options] = input.split('\n')
+    const opts = options ? JSON.parse(options) : {}
+    const pedantry = new Pedantry(path, opts)
     const res = await collect(pedantry)
     return res
   },

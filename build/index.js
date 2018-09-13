@@ -1,9 +1,9 @@
-import { resolve } from 'path'
-import { createReadStream } from 'fs'
-import { PassThrough } from 'stream'
-import { debuglog } from 'util'
-import readDirStructure from '@wrote/read-dir-structure'
-import { getKeys } from './lib'
+const { resolve } = require('path');
+const { createReadStream } = require('fs');
+const { PassThrough } = require('stream');
+const { debuglog } = require('util');
+let readDirStructure = require('@wrote/read-dir-structure'); if (readDirStructure && readDirStructure.__esModule) readDirStructure = readDirStructure.default;
+const { getKeys } = require('./lib');
 
 const LOG = debuglog('pedantry')
 
@@ -58,7 +58,7 @@ const processFile = async (stream, fullPath) => {
 
 // * @todo implement reading only on read ie change mode
 
-export default class Pedantry extends PassThrough {
+               class Pedantry extends PassThrough {
   /**
    * @constructor
    * Upon creation, `Pedantry` will start reading files in the `source` directory recursively in the following order: the content of the `index.md` file will go first, then of all files and directories in the folder recursively in a sorted order, and the content of the `footer.md` file will go last if found.
@@ -96,3 +96,7 @@ export default class Pedantry extends PassThrough {
  * @typedef {Object} Options Options for Pedantry.
  * @prop {boolean} [reverse=false] Whether to print files in reverse order, i.e., `30-file.md` before `1-file.md`. Default `false`.
  */
+
+
+module.exports = Pedantry
+//# sourceMappingURL=index.js.map

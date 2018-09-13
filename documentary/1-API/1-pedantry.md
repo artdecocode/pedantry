@@ -1,17 +1,20 @@
 
 ```### constructor => Pedantry
 [
-  ["source", "string"]
+  ["source", "string"],
+  ["options?", "Options"]
 ]
 ```
 
 <!-- Instances of the `Pedantry` class will start reading the directory and push data immediately. The data is a merged buffer of contents of all files. -->
 
-Upon creation, `Pedantry` will start reading files in the `source` directory recursively in the following order:
+Create a new readable stream. Upon creation, `Pedantry` will start reading files in the `source` directory recursively in the following order:
 
-- the content of the `index.md` file will go first if it exists,
-- then of all files and directories in the folder recursively in a sorted order,
-- and the content of the `footer.md` file will go last if found.
+1. the content of the `index.md` file will go first if it exists,
+1. then of all files and directories in the folder recursively in a sorted order (possibly in reverse),
+1. and the content of the `footer.md` file will go last if found.
+
+%TYPEDEF types/index.xml%
 
 Given the directory structure:
 
