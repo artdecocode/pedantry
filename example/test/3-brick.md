@@ -12,5 +12,6 @@ understandable irony, letting himself be drawn into a truly absurd conversation.
 
 'Gladly,' replied the stranger. He took Berlioz's measure as if intending to
 make him a suit and muttered something through his teeth that sounded like 'One,
-two.. Mercury in the Second House... the moon has set... six-misfortune... evening-seven...' Then he announced loudly and joyously, 'Your head will be cut
+two.. Mercury in the Second House... the moon has set... six-misfortune...
+evening-seven...' Then he announced loudly and joyously, 'Your head will be cut
 off!”
