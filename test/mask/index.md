@@ -37,3 +37,17 @@ when the code is gone
 
 Kings of medicine.
 /**/
+
+/* files */
+[
+  "index.md",
+  "earth.md",
+  "file.md",
+  "new-directory/index.md",
+  "new-directory/ice.md",
+  "new-directory/queen.md",
+  "new-directory/water.md",
+  "readme.md",
+  "footer.md"
+]
+/**/

@@ -1,4 +1,4 @@
-import { resolve } from 'path'
+import { join } from 'path'
 import { createReadStream } from 'fs'
 import { PassThrough } from 'stream'
 import { debuglog } from 'util'
@@ -13,7 +13,7 @@ const LOG = debuglog('pedantry')
  * @param {object} content
  * @param {boolean} [reverse=false]
  */
-const processDir = async (stream, path, content = {}, reverse = false) => {
+const processDir = async (stream, source, path, content = {}, reverse = false) => {
   const k = Object.keys(content)
 
   const keys = getKeys(k, reverse)
@@ -21,13 +21,13 @@ const processDir = async (stream, path, content = {}, reverse = false) => {
   const size = await keys.reduce(async (acc, name) => {
     let totalSize = await acc
     const { type, content: dirContent } = content[name]
-    const fullPath = resolve(path, name)
+    const relPath = join(path, name)
 
     let s
     if (type == 'File') {
-      s = await processFile(stream, fullPath)
+      s = await processFile(stream, source, relPath)
     } else if (type == 'Directory') {
-      s = await processDir(stream, fullPath, dirContent, reverse)
+      s = await processDir(stream, source, relPath, dirContent, reverse)
     }
     totalSize += s
     return totalSize
@@ -37,7 +37,14 @@ const processDir = async (stream, path, content = {}, reverse = false) => {
   return size
 }
 
-const processFile = async (stream, fullPath) => {
+/**
+ *
+ * @param {Pedantry} stream
+ * @param {string} fullPath
+ */
+const processFile = async (stream, source, path) => {
+  const fullPath = join(source, path)
+  stream.emit('file', path)
   const size = await new Promise((r, j) => {
     let s = 0
     createReadStream(fullPath)
@@ -81,7 +88,7 @@ export default class Pedantry extends PassThrough {
         this.emit('error', e)
       }
       try {
-        await processDir(this, source, content, reverse)
+        await processDir(this, source, '.', content, reverse)
       } catch (err) {
         this.emit('error', err)
       } finally {
