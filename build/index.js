@@ -1,4 +1,4 @@
-const { resolve } = require('path');
+const { join } = require('path');
 const { createReadStream } = require('fs');
 const { PassThrough } = require('stream');
 const { debuglog } = require('util');
@@ -13,7 +13,7 @@ const LOG = debuglog('pedantry')
  * @param {object} content
  * @param {boolean} [reverse=false]
  */
-const processDir = async (stream, path, content = {}, reverse = false) => {
+const processDir = async (stream, source, path, content = {}, reverse = false) => {
   const k = Object.keys(content)
 
   const keys = getKeys(k, reverse)
@@ -21,13 +21,13 @@ const processDir = async (stream, path, content = {}, reverse = false) => {
   const size = await keys.reduce(async (acc, name) => {
     let totalSize = await acc
     const { type, content: dirContent } = content[name]
-    const fullPath = resolve(path, name)
+    const relPath = join(path, name)
 
     let s
     if (type == 'File') {
-      s = await processFile(stream, fullPath)
+      s = await processFile(stream, source, relPath)
     } else if (type == 'Directory') {
-      s = await processDir(stream, fullPath, dirContent, reverse)
+      s = await processDir(stream, source, relPath, dirContent, reverse)
     }
     totalSize += s
     return totalSize
@@ -37,7 +37,14 @@ const processDir = async (stream, path, content = {}, reverse = false) => {
   return size
 }
 
-const processFile = async (stream, fullPath) => {
+/**
+ *
+ * @param {Pedantry} stream
+ * @param {string} fullPath
+ */
+const processFile = async (stream, source, path) => {
+  const fullPath = join(source, path)
+  stream.emit('file', path)
   const size = await new Promise((r, j) => {
     let s = 0
     createReadStream(fullPath)
@@ -62,7 +69,6 @@ const processFile = async (stream, fullPath) => {
   /**
    * @constructor
    * Upon creation, `Pedantry` will start reading files in the `source` directory recursively in the following order: the content of the `index.md` file will go first, then of all files and directories in the folder recursively in a sorted order, and the content of the `footer.md` file will go last if found.
-   *
    * @param {string} source Path to the root directory.
    * @param {Options} options Options for Pedantry.
  * @param {boolean} [options.reverse=false] Whether to print files in reverse order, i.e., `30-file.md` before `1-file.md`. Default `false`.
@@ -81,7 +87,7 @@ const processFile = async (stream, fullPath) => {
         this.emit('error', e)
       }
       try {
-        await processDir(this, source, content, reverse)
+        await processDir(this, source, '.', content, reverse)
       } catch (err) {
         this.emit('error', err)
       } finally {
@@ -90,6 +96,12 @@ const processFile = async (stream, fullPath) => {
     })()
   }
 }
+
+/**
+ * A file event.
+ * @event Pedantry#file
+ * @param {string} file A path to the file currently being processed relative to the `Pedantry` source.
+ */
 
 /* documentary types/index.xml */
 /**
