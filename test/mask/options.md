@@ -20,3 +20,14 @@ index
 1-test
 footer
 /**/
+
+// adds new line to files
+test/fixture/new-lines
+{"addNewLine": true}
+
+/* expected */
+index
+1-file
+2-file
+footer
+/**/

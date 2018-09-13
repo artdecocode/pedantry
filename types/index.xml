@@ -3,5 +3,8 @@
     <prop boolean name="reverse" default="false">
       Whether to print files in reverse order, i.e., `30-file.md` before `1-file.md`.
     </prop>
+    <prop boolean name="addNewLine" default="false">
+      Add a `\n` symbol between the content of each file.
+    </prop>
   </type>
 </types>
