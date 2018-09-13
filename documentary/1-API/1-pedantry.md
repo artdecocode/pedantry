@@ -1,5 +1,5 @@
 
-```### constructor => Pedantry
+```## constructor => Pedantry
 [
   ["source", "string"],
   ["options?", "Options"]
@@ -23,3 +23,19 @@ Given the directory structure:
 The usage of `Pedantry` is as below:
 
 %EXAMPLE: example/Pedantry.js, ../src => pedantry%
+
+%FORK-markdown example example/Pedantry.js%
+
+## Reverse Order
+
+To print in reverse order, the `reverse` option can be set. This feature could be useful when writing a blog, for example, as 23 will follow 22, and in the output it will be printed first.
+
+With a simpler directory structure:
+
+%TREE example/simple-test%
+
+It could be printed in reverse.
+
+%EXAMPLE: example/reverse.js, ../src => pedantry%
+
+%FORK-markdown example example/reverse.js%
