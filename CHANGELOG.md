@@ -1,5 +1,9 @@
 ## 14 September 2018
 
+### 2.2.0
+
+- [feature] Automatically insert `\n\n` with `addBlankLine` option.
+
 ### 2.1.0
 
 - [feature] Automatically insert `\n` with `addNewLine` option.
