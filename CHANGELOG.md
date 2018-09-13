@@ -1,5 +1,9 @@
 ## 14 September 2018
 
+### 2.1.0
+
+- [feature] Automatically insert `\n` with `addNewLine` option.
+
 ### 2.0.0
 
 - [feature] Sort files in numerical locale (**breaking**), implement reverse order and emit `file` events.
