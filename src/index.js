@@ -9,7 +9,7 @@ const LOG = debuglog('pedantry')
 
 const processDir = async ({
   stream, source, path = '.', content = {}, reverse = false,
-  addNewLine,
+  separator,
 }) => {
   const k = Object.keys(content)
 
@@ -23,12 +23,12 @@ const processDir = async ({
     let s
     if (type == 'File') {
       s = await processFile({
-        stream, source, path: relPath, addNewLine,
+        stream, source, path: relPath, separator,
       })
     } else if (type == 'Directory') {
       s = await processDir({
         stream, source, path: relPath, content: dirContent, reverse,
-        addNewLine,
+        separator,
       })
     }
     totalSize += s
@@ -44,12 +44,12 @@ const processDir = async ({
  */
 const processFile = async (options) => {
   const {
-    stream, source, path, addNewLine,
+    stream, source, path, separator,
   } = options
   const fullPath = join(source, path)
   stream.emit('file', path)
-  if (addNewLine && !stream.justStarted) {
-    stream.push('\n')
+  if (separator && !stream.justStarted) {
+    stream.push(separator)
   }
   const size = await new Promise((r, j) => {
     let s = 0
@@ -80,13 +80,18 @@ export default class Pedantry extends PassThrough {
    * @param {Options} options Options for Pedantry.
  * @param {boolean} [options.reverse=false] Whether to print files in reverse order, i.e., `30-file.md` before `1-file.md`. Default `false`.
  * @param {boolean} [options.addNewLine=false] Add a `\n` symbol between the content of each file. Default `false`.
+ * @param {boolean} [options.addBlankLine=false] Add a blank line between the content of each file, which is equivalent to inserting `\n\n`. Default `false`.
    */
   constructor(source, options = {}) {
     const {
       reverse = false,
       addNewLine = false,
+      addBlankLine = false,
     } = options
     super()
+    let separator
+    if (addNewLine) separator = '\n'
+    else if (addBlankLine) separator = '\n\n'
     this.justStarted = true
     ;(async () => {
       let content
@@ -102,7 +107,7 @@ export default class Pedantry extends PassThrough {
           source,
           content,
           reverse,
-          addNewLine,
+          separator,
         })
       } catch (err) {
         this.emit('error', err)
@@ -124,4 +129,5 @@ export default class Pedantry extends PassThrough {
  * @typedef {Object} Options Options for Pedantry.
  * @prop {boolean} [reverse=false] Whether to print files in reverse order, i.e., `30-file.md` before `1-file.md`. Default `false`.
  * @prop {boolean} [addNewLine=false] Add a `\n` symbol between the content of each file. Default `false`.
+ * @prop {boolean} [addBlankLine=false] Add a blank line between the content of each file, which is equivalent to inserting `\n\n`. Default `false`.
  */

@@ -42,10 +42,11 @@ Create a new readable stream. Upon creation, `Pedantry` will start reading files
 
 __<a name="options">`Options`</a>__: Options for Pedantry.
 
-|    Name    |   Type    |                                   Description                                   | Default |
-| ---------- | --------- | ------------------------------------------------------------------------------- | ------- |
-| reverse    | _boolean_ | Whether to print files in reverse order, i.e., `30-file.md` before `1-file.md`. | `false` |
-| addNewLine | _boolean_ | Add a `\n` symbol between the content of each file.                             | `false` |
+|     Name     |   Type    |                                         Description                                         | Default |
+| ------------ | --------- | ------------------------------------------------------------------------------------------- | ------- |
+| reverse      | _boolean_ | Whether to print files in reverse order, i.e., `30-file.md` before `1-file.md`.             | `false` |
+| addNewLine   | _boolean_ | Add a `\n` symbol between the content of each file.                                         | `false` |
+| addBlankLine | _boolean_ | Add a blank line between the content of each file, which is equivalent to inserting `\n\n`. | `false` |
 
 Given the directory structure:
 

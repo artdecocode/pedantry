@@ -6,5 +6,8 @@
     <prop boolean name="addNewLine" default="false">
       Add a `\n` symbol between the content of each file.
     </prop>
+    <prop boolean name="addBlankLine" default="false">
+      Add a blank line between the content of each file, which is equivalent to inserting `\n\n`.
+    </prop>
   </type>
 </types>

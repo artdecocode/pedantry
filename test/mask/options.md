@@ -31,3 +31,17 @@ index
 2-file
 footer
 /**/
+
+// adds blank line to files
+test/fixture/new-lines
+{"addBlankLine": true}
+
+/* expected */
+index
+
+1-file
+
+2-file
+
+footer
+/**/
