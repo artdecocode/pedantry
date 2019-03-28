@@ -6,12 +6,14 @@
   "module": "src/index.js",
   "scripts": {
     "t": "zoroaster -a",
-    "test": "yarn t test/spec",
+    "spec": "yarn t test/spec",
+    "mask": "yarn t test/spec",
+    "test": "yarn t test/spec test/mask",
     "test-build": "ALAMODE_ENV=test-build yarn test",
     "lint": "eslint .",
     "doc": "NODE_DEBUG=doc doc documentary -o README.md",
     "d": "NODE_DEBUG=doc doc src/index.js -g",
-    "b": "alamode src -o build",
+    "b": "alamode src -o build -s",
     "build": "yarn-s d b doc",
     "e": "node example",
     "example/": "yarn e example/Pedantry.js"
