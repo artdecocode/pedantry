@@ -1,3 +1,10 @@
+## 28 March 2019
+
+### [2.3.0](https://github.com/artdecocode/pedantry/compare/v2.2.0...v2.3.0)
+
+- [feature] Push file path in the object mode with `includeFilename`.
+- [package] Export the ES6 module.
+
 ## 14 September 2018
 
 ### 2.2.0
