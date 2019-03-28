@@ -20,7 +20,7 @@ const T = {
     equal(error.message, `ENOENT: no such file or directory, lstat '${s}'`)
   },
   async 'runs in object mode'() {
-    const pedantry = new Pedantry('test/fixture/order', {
+    const pedantry = new Pedantry('test/fixture/directory', {
       includeFilename: true,
       addBlankLine: true,
     })

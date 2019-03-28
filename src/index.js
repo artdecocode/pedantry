@@ -28,7 +28,7 @@ const processDir = async ({
     } else if (type == 'Directory') {
       s = await processDir({
         stream, source, path: relPath, content: dirContent, reverse,
-        separator,
+        separator, includeFilename,
       })
     }
     totalSize += s
