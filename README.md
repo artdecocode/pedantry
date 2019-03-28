@@ -2,7 +2,7 @@
 
 [![npm version](https://badge.fury.io/js/pedantry.svg)](https://npmjs.org/package/pedantry)
 
-_Pedantry_ is a readable stream that puts together all files and nested directories in the given directory in sorted order (`1.md`, `2.md`, `3/1.md`, `3/1.5.md`, `10`, _etc_). It will also read `index.md` and `footer.md` as first and last files respectively if found.
+_Pedantry_ is a readable stream that puts together all files and nested directories in the given directory in sorted order (`1.md`, `2.md`, `3/1.md`, `3/1.5.md`, `10.md`, _etc_). It will also read `index.md` and `footer.md` as first and last files respectively if found.
 
 ```sh
 yarn add -E pedantry
@@ -186,7 +186,40 @@ footer.md
 
 ### Object Mode
 
-To get access to the currently processed file, _Pedantry_ can be run in object mode, in which it will emit the `data` event with an object consisting of `file` and `data` properties.
+To get access to the currently processed file, _Pedantry_ can be run in object mode, in which it will emit the `data` event with an object consisting of `file` and `data` properties. If blank lines are added, their will be reported as coming from the `separator` file.
+
+```js
+import Pedantry from 'pedantry'
+import { Transform } from 'stream'
+
+const pedantry = new Pedantry('example/simple-test', {
+  includeFilename: true,
+  addBlankLine: true,
+})
+const t = new Transform({
+  objectMode: true,
+  transform(object, _, next) {
+    console.log(object)
+    next()
+  },
+})
+pedantry.pipe(t)
+```
+```fs
+{ file: 'example/simple-test/index.md', data: 'index.md\n' }
+{ file: 'separator', data: '\n\n' }
+{ file: 'example/simple-test/1-file.md', data: '1-file.md\n' }
+{ file: 'separator', data: '\n\n' }
+{ file: 'example/simple-test/2-test.md', data: '2-test.md\n' }
+{ file: 'separator', data: '\n\n' }
+{ file: 'example/simple-test/21-hello.md',
+  data: '21-hello.md\n' }
+{ file: 'separator', data: '\n\n' }
+{ file: 'example/simple-test/100-world.md',
+  data: '100-world.md\n' }
+{ file: 'separator', data: '\n\n' }
+{ file: 'example/simple-test/footer.md', data: 'footer.md' }
+```
 
 <p align="center"><a href="#table-of-contents"><img src=".documentary/section-breaks/3.svg?sanitize=true"></a></p>
 

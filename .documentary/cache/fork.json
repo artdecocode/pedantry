@@ -58,5 +58,25 @@
     ],
     "stdout": "index.md\n1-file.md\n2-test.md\n21-hello.md\n100-world.md\nfooter.md\n",
     "stderr": ""
+  },
+  "example/object": {
+    "mtime": 1553765200000,
+    "analysis": [
+      "src/index.js 1553764497000",
+      "stream",
+      "path",
+      "fs",
+      "util",
+      "@wrote/read-dir-structure 1.0.2",
+      "src/lib/index.js 1536873505000",
+      "makepromise 3.0.2",
+      "erotic 2.0.2",
+      "node_modules/erotic/src/lib.js 1547478228000",
+      "node_modules/erotic/src/callback.js 1547478228000",
+      "@artdeco/clean-stack 1.0.1",
+      "os"
+    ],
+    "stdout": "{ file: 'example/simple-test/index.md', data: 'index.md\\n' }\n{ file: 'separator', data: '\\n\\n' }\n{ file: 'example/simple-test/1-file.md', data: '1-file.md\\n' }\n{ file: 'separator', data: '\\n\\n' }\n{ file: 'example/simple-test/2-test.md', data: '2-test.md\\n' }\n{ file: 'separator', data: '\\n\\n' }\n{ file: 'example/simple-test/21-hello.md',\n  data: '21-hello.md\\n' }\n{ file: 'separator', data: '\\n\\n' }\n{ file: 'example/simple-test/100-world.md',\n  data: '100-world.md\\n' }\n{ file: 'separator', data: '\\n\\n' }\n{ file: 'example/simple-test/footer.md', data: 'footer.md' }\n",
+    "stderr": ""
   }
 }
