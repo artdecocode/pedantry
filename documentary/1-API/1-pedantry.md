@@ -1,4 +1,3 @@
-
 ## class `Pedantry`
 
 A _Pedantry_ instance reads files in order one-by-one and pushes the results further down the pipe.
@@ -20,34 +19,14 @@ Create a new readable stream. Upon creation, `Pedantry` will start reading files
 
 %TYPEDEF types/index.xml%
 
-Given the directory structure:
+_Given the directory structure:_
 
 %TREE example/test%
 
-The usage of `Pedantry` is as below:
+_The usage of **Pedantry** is as below:_
 
-%EXAMPLE: example/Pedantry.js, ../src => pedantry%
+%EXAMPLE: example/Pedantry, ../src => pedantry%
 
-%FORK-markdown example example/Pedantry.js%
+%FORK-markdown example/Pedantry.js%
 
-### Reverse Order
-
-To print in reverse order, the `reverse` option can be set. This feature could be useful when writing a blog, for example, as 23 will follow 22, and in the output it will be printed first.
-
-With a simpler directory structure:
-
-%TREE example/simple-test%
-
-It could be printed in reverse.
-
-%EXAMPLE: example/reverse.js, ../src => pedantry%
-
-%FORK-markdown example example/reverse.js%
-
-### Events
-
-The _Pedantry_ stream will emit `file` events when a file is started to be read. The content of this event is a path to the currently read file relative to the source directory.
-
-%EXAMPLE: example/events.js, ../src => pedantry%
-
-%FORK-fs example example/events.js%
+%~ width="15"%

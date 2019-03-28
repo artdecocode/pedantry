@@ -2,7 +2,7 @@
 
 [![npm version](https://badge.fury.io/js/pedantry.svg)](https://npmjs.org/package/pedantry)
 
-`pedantry` is a Node.js package that implements a readable stream which puts together of all files in the directory in the sorted order. It also supports reading `index.md` and `footer.md` as first and last files respectively if found.
+_Pedantry_ is a readable stream that puts together all files and nested directories in the given directory in sorted order (`1.md`, `2.md`, `3/1.md`, `3/1.5.md`, `10`, _etc_). It will also read `index.md` and `footer.md` as first and last files respectively if found.
 
 ```sh
 yarn add -E pedantry
@@ -14,11 +14,12 @@ yarn add -E pedantry
 - [API](#api)
 - [class `Pedantry`](#class-pedantry)
   * [`constructor(source: string, options?: Options): Pedantry`](#constructorsource-stringoptions-options-pedantry)
-    * [`Options`](#options)
+    * [`Options`](#type-options)
   * [Reverse Order](#reverse-order)
   * [Events](#events)
-- [TODO](#todo)
+  * [Object Mode](#object-mode)
 - [Copyright](#copyright)
+
 
 ## API
 
@@ -27,6 +28,7 @@ The main export of the program is the `Pedantry` duplex stream which should only
 ```js
 import Pedantry from 'pedantry'
 ```
+
 
 ## class `Pedantry`
 
@@ -40,15 +42,16 @@ Create a new readable stream. Upon creation, `Pedantry` will start reading files
 1. then of all files and directories in the folder recursively in a sorted order (possibly in reverse),
 1. and the content of the `footer.md` file will go last if found.
 
-__<a name="options">`Options`</a>__: Options for Pedantry.
+__<a name="type-options">`Options`</a>__: Options for Pedantry.
 
-|     Name     |   Type    |                                         Description                                         | Default |
-| ------------ | --------- | ------------------------------------------------------------------------------------------- | ------- |
-| reverse      | _boolean_ | Whether to print files in reverse order, i.e., `30-file.md` before `1-file.md`.             | `false` |
-| addNewLine   | _boolean_ | Add a `\n` symbol between the content of each file.                                         | `false` |
-| addBlankLine | _boolean_ | Add a blank line between the content of each file, which is equivalent to inserting `\n\n`. | `false` |
+|      Name       |   Type    |                                                                                            Description                                                                                            | Default |
+| --------------- | --------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------- |
+| reverse         | _boolean_ | Whether to print files in reverse order, i.e., `30-file.md` before `1-file.md`.                                                                                                                   | `false` |
+| addNewLine      | _boolean_ | Add a `\n` symbol between the content of each file.                                                                                                                                               | `false` |
+| addBlankLine    | _boolean_ | Add a blank line between the content of each file, which is equivalent to inserting `\n\n`.                                                                                                       | `false` |
+| includeFilename | _boolean_ | When this is set to `true`, _Pedantry_ will write data in object mode, pushing an object with `file` and `data` properties. New and blank lines will have the `file` property set to `separator`. | `false` |
 
-Given the directory structure:
+_Given the directory structure:_
 
 ```m
 example/test
@@ -60,7 +63,7 @@ example/test
 └── index.md
 ```
 
-The usage of `Pedantry` is as below:
+_The usage of **Pedantry** is as below:_
 
 ```js
 import Pedantry from 'pedantry'
@@ -119,11 +122,13 @@ off!”
 [source](https://www.goodreads.com/work/quotes/876183?page=2)
 ```
 
+<p align="center"><a href="#table-of-contents"><img src=".documentary/section-breaks/0.svg?sanitize=true" width="15"></a></p>
+
 ### Reverse Order
 
-To print in reverse order, the `reverse` option can be set. This feature could be useful when writing a blog, for example, as 23 will follow 22, and in the output it will be printed first.
+To print in reverse order, the `reverse` option can be set. This feature could be useful when writing a blog, for example, as date 23 will follow 22, and in the output it will be printed first.
 
-With a simpler directory structure:
+_With a simpler directory structure:_
 
 ```m
 example/simple-test
@@ -135,7 +140,7 @@ example/simple-test
 └── index.md
 ```
 
-It could be printed in reverse.
+_It could be printed in reverse:_
 
 ```js
 import Pedantry from 'pedantry'
@@ -155,9 +160,11 @@ index.md
 footer.md
 ```
 
+<p align="center"><a href="#table-of-contents"><img src=".documentary/section-breaks/1.svg?sanitize=true" width="15"></a></p>
+
 ### Events
 
-The _Pedantry_ stream will emit `file` events when a file is started to be read. The content of this event is a path to the currently read file relative to the source directory.
+The _Pedantry_ stream will emit `file` events when a file is started to be read. The content of this event is the path to the currently read file relative to the source directory.
 
 ```js
 import Pedantry from 'pedantry'
@@ -175,12 +182,30 @@ index.md
 footer.md
 ```
 
-## TODO
+<p align="center"><a href="#table-of-contents"><img src=".documentary/section-breaks/2.svg?sanitize=true" width="15"></a></p>
 
-- [ ] Add a todo list item.
+### Object Mode
+
+To get access to the currently processed file, _Pedantry_ can be run in object mode, in which it will emit the `data` event with an object consisting of `file` and `data` properties.
+
+<p align="center"><a href="#table-of-contents"><img src=".documentary/section-breaks/3.svg?sanitize=true"></a></p>
 
 ## Copyright
 
-(c) [Art Deco][1] 2018
-
-[1]: https://artdeco.bz
+<table>
+  <tr>
+    <th>
+      <a href="https://artd.eco">
+        <img src="https://raw.githubusercontent.com/wrote/wrote/master/images/artdeco.png" alt="Art Deco" />
+      </a>
+    </th>
+    <th>© <a href="https://artd.eco">Art Deco</a>   2019</th>
+    <th>
+      <a href="https://www.technation.sucks" title="Tech Nation Visa">
+        <img src="https://raw.githubusercontent.com/artdecoweb/www.technation.sucks/master/anim.gif"
+          alt="Tech Nation Visa" />
+      </a>
+    </th>
+    <th><a href="https://www.technation.sucks">Tech Nation Visa Sucks</a></th>
+  </tr>
+</table>
