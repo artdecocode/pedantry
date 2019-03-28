@@ -1,5 +1,9 @@
 ## 28 March 2019
 
+### [2.3.1](https://github.com/artdecocode/pedantry/compare/v2.3.0...v2.3.1)
+
+- [fix] Fix nested include filename.
+
 ### [2.3.0](https://github.com/artdecocode/pedantry/compare/v2.2.0...v2.3.0)
 
 - [feature] Push file path in the object mode with `includeFilename`.
