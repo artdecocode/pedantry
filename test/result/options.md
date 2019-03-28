@@ -1,4 +1,4 @@
-// compiles files in order
+## compiles files in order
 test/fixture/order
 
 /* expected */
@@ -9,9 +9,12 @@ index
 footer
 /**/
 
-// compiles files in reverse order
+## compiles files in reverse order
 test/fixture/order
+
+/* options */
 {"reverse": true}
+/**/
 
 /* expected */
 index
@@ -21,9 +24,12 @@ index
 footer
 /**/
 
-// adds new line to files
+## adds new line to files
 test/fixture/new-lines
+
+/* options */
 {"addNewLine": true}
+/**/
 
 /* expected */
 index
@@ -32,9 +38,12 @@ index
 footer
 /**/
 
-// adds blank line to files
+## adds blank line to files
 test/fixture/new-lines
+
+/* options */
 {"addBlankLine": true}
+/**/
 
 /* expected */
 index
