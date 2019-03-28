@@ -9,5 +9,8 @@
     <prop boolean name="addBlankLine" default="false">
       Add a blank line between the content of each file, which is equivalent to inserting `\n\n`.
     </prop>
+    <prop boolean name="includeFilename" default="false">
+      When this is set to `true`, _Pedantry_ will write data in object mode, pushing an object with `file` and `data` properties. New and blank lines will have the `file` property set to `separator`.
+    </prop>
   </type>
 </types>

@@ -1,0 +1,38 @@
+[
+  {
+    "file": "test/fixture/order/index.md",
+    "data": "index\n"
+  },
+  {
+    "file": "separator",
+    "data": "\n\n"
+  },
+  {
+    "file": "test/fixture/order/1-test.md",
+    "data": "1-test\n"
+  },
+  {
+    "file": "separator",
+    "data": "\n\n"
+  },
+  {
+    "file": "test/fixture/order/2-test.md",
+    "data": "2-test\n"
+  },
+  {
+    "file": "separator",
+    "data": "\n\n"
+  },
+  {
+    "file": "test/fixture/order/11-test.md",
+    "data": "11-test\n"
+  },
+  {
+    "file": "separator",
+    "data": "\n\n"
+  },
+  {
+    "file": "test/fixture/order/footer.md",
+    "data": "footer"
+  }
+]

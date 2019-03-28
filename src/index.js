@@ -9,7 +9,7 @@ const LOG = debuglog('pedantry')
 
 const processDir = async ({
   stream, source, path = '.', content = {}, reverse = false,
-  separator,
+  separator, includeFilename,
 }) => {
   const k = Object.keys(content)
 
@@ -23,7 +23,7 @@ const processDir = async ({
     let s
     if (type == 'File') {
       s = await processFile({
-        stream, source, path: relPath, separator,
+        stream, source, path: relPath, separator, includeFilename,
       })
     } else if (type == 'Directory') {
       s = await processDir({
@@ -44,26 +44,34 @@ const processDir = async ({
  */
 const processFile = async (options) => {
   const {
-    stream, source, path, separator,
+    stream, source, path, separator, includeFilename,
   } = options
   const fullPath = join(source, path)
   stream.emit('file', path)
   if (separator && !stream.justStarted) {
-    stream.push(separator)
+    if (includeFilename) {
+      stream.push({ file: 'separator', data: separator })
+    } else {
+      stream.push(separator)
+    }
   }
   const size = await new Promise((r, j) => {
     let s = 0
-    createReadStream(fullPath)
-      .on('data', (d) => {
-        s += d.byteLength
+    const rs = createReadStream(fullPath)
+    rs.on('data', (d) => {
+      s += d.byteLength
+    }).on('error', (err) => {
+      j(err)
+    }).on('close', () => {
+      r(s)
+    })
+    if (includeFilename) {
+      rs.on('data', (data) => {
+        stream.push({ file: fullPath, data: `${data}` })
       })
-      .on('close', () => {
-        r(s)
-      })
-      .on('error', (err) => {
-        j(err)
-      })
-      .pipe(stream, { end: false })
+    } else {
+      rs.pipe(stream, { end: false })
+    }
   })
   stream.justStarted = false
   LOG('file %s :: %s B', fullPath, size)
@@ -78,17 +86,21 @@ export default class Pedantry extends PassThrough {
    * Upon creation, `Pedantry` will start reading files in the `source` directory recursively in the following order: the content of the `index.md` file will go first, then of all files and directories in the folder recursively in a sorted order, and the content of the `footer.md` file will go last if found.
    * @param {string} source Path to the root directory.
    * @param {Options} options Options for Pedantry.
- * @param {boolean} [options.reverse=false] Whether to print files in reverse order, i.e., `30-file.md` before `1-file.md`. Default `false`.
- * @param {boolean} [options.addNewLine=false] Add a `\n` symbol between the content of each file. Default `false`.
- * @param {boolean} [options.addBlankLine=false] Add a blank line between the content of each file, which is equivalent to inserting `\n\n`. Default `false`.
+   * @param {boolean} [options.reverse=false] Whether to print files in reverse order, i.e., `30-file.md` before `1-file.md`. Default `false`.
+   * @param {boolean} [options.addNewLine=false] Add a `\n` symbol between the content of each file. Default `false`.
+   * @param {boolean} [options.addBlankLine=false] Add a blank line between the content of each file, which is equivalent to inserting `\n\n`. Default `false`.
+   * @param {boolean} [options.includeFilename=false] When this is set to `true`, _Pedantry_ will write data in object mode, pushing an object with `file` and `data` properties. New and blank lines will have the `file` property set to `separator`. Default `false`.
    */
   constructor(source, options = {}) {
     const {
       reverse = false,
       addNewLine = false,
       addBlankLine = false,
+      includeFilename = false,
     } = options
-    super()
+    super({
+      objectMode: includeFilename,
+    })
     let separator
     if (addNewLine) separator = '\n'
     else if (addBlankLine) separator = '\n\n'
@@ -108,6 +120,7 @@ export default class Pedantry extends PassThrough {
           content,
           reverse,
           separator,
+          includeFilename,
         })
       } catch (err) {
         this.emit('error', err)
@@ -130,4 +143,5 @@ export default class Pedantry extends PassThrough {
  * @prop {boolean} [reverse=false] Whether to print files in reverse order, i.e., `30-file.md` before `1-file.md`. Default `false`.
  * @prop {boolean} [addNewLine=false] Add a `\n` symbol between the content of each file. Default `false`.
  * @prop {boolean} [addBlankLine=false] Add a blank line between the content of each file, which is equivalent to inserting `\n\n`. Default `false`.
+ * @prop {boolean} [includeFilename=false] When this is set to `true`, _Pedantry_ will write data in object mode, pushing an object with `file` and `data` properties. New and blank lines will have the `file` property set to `separator`. Default `false`.
  */
