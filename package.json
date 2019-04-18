@@ -44,14 +44,14 @@
   },
   "homepage": "https://github.com/artdecocode/pedantry#readme",
   "devDependencies": {
-    "alamode": "1.8.6",
-    "catchment": "3.2.2",
-    "documentary": "1.23.0",
+    "alamode": "^1.9.3",
+    "catchment": "^3.3.0",
+    "documentary": "^1.23.4",
     "eslint-config-artdeco": "1.0.1",
     "yarn-s": "1.1.0",
-    "zoroaster": "3.11.1"
+    "zoroaster": "^3.11.6"
   },
   "dependencies": {
-    "@wrote/read-dir-structure": "1.0.2"
+    "@wrote/read-dir-structure": "^1.2.0"
   }
 }
