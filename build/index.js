@@ -9,7 +9,7 @@ const LOG = debuglog('pedantry')
 
 const processDir = async ({
   stream, source, path = '.', content = {}, reverse = false,
-  separator, includeFilename,
+  separator, includeFilename, ignoreHidden,
 }) => {
   const k = Object.keys(content)
 
@@ -22,13 +22,14 @@ const processDir = async ({
 
     let s
     if (type == 'File') {
-      s = await processFile({
+      const shouldIgnore = ignoreHidden && name.startsWith('.')
+      if (!shouldIgnore) s = await processFile({
         stream, source, path: relPath, separator, includeFilename,
       })
     } else if (type == 'Directory') {
       s = await processDir({
         stream, source, path: relPath, content: dirContent, reverse,
-        separator, includeFilename,
+        separator, includeFilename, ignoreHidden,
       })
     }
     totalSize += s
@@ -80,7 +81,7 @@ const processFile = async (options) => {
 
 // * @todo implement reading only on read ie change mode
 
-               class Pedantry extends PassThrough {
+class Pedantry extends PassThrough {
   /**
    * @constructor
    * Upon creation, `Pedantry` will start reading files in the `source` directory recursively in the following order: the content of the `index.md` file will go first, then of all files and directories in the folder recursively in a sorted order, and the content of the `footer.md` file will go last if found.
@@ -90,6 +91,7 @@ const processFile = async (options) => {
    * @param {boolean} [options.addNewLine=false] Add a `\n` symbol between the content of each file. Default `false`.
    * @param {boolean} [options.addBlankLine=false] Add a blank line between the content of each file, which is equivalent to inserting `\n\n`. Default `false`.
    * @param {boolean} [options.includeFilename=false] When this is set to `true`, _Pedantry_ will write data in object mode, pushing an object with `file` and `data` properties. New and blank lines will have the `file` property set to `separator`. Default `false`.
+   * @param {boolean} [options.ignoreHidden=false] Don't read files that start with the `.` symbol. Default `false`.
    */
   constructor(source, options = {}) {
     const {
@@ -97,6 +99,7 @@ const processFile = async (options) => {
       addNewLine = false,
       addBlankLine = false,
       includeFilename = false,
+      ignoreHidden = false,
     } = options
     super({
       objectMode: includeFilename,
@@ -121,6 +124,7 @@ const processFile = async (options) => {
           reverse,
           separator,
           includeFilename,
+          ignoreHidden,
         })
       } catch (err) {
         this.emit('error', err)
@@ -137,13 +141,15 @@ const processFile = async (options) => {
  * @param {string} file A path to the file currently being processed relative to the `Pedantry` source.
  */
 
-/* documentary types/index.xml */
+/* typal types/index.xml closure */
 /**
+ * @suppress {nonStandardJsDocs}
  * @typedef {Object} Options Options for Pedantry.
  * @prop {boolean} [reverse=false] Whether to print files in reverse order, i.e., `30-file.md` before `1-file.md`. Default `false`.
  * @prop {boolean} [addNewLine=false] Add a `\n` symbol between the content of each file. Default `false`.
  * @prop {boolean} [addBlankLine=false] Add a blank line between the content of each file, which is equivalent to inserting `\n\n`. Default `false`.
  * @prop {boolean} [includeFilename=false] When this is set to `true`, _Pedantry_ will write data in object mode, pushing an object with `file` and `data` properties. New and blank lines will have the `file` property set to `separator`. Default `false`.
+ * @prop {boolean} [ignoreHidden=false] Don't read files that start with the `.` symbol. Default `false`.
  */
 
 

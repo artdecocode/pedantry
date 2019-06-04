@@ -3,7 +3,7 @@
  * @param {[string[], string[]]} acc left to exclude, and non-excluded
  * @param {string} current
  */
-       const excludeReducer = (acc, current) => {
+const excludeReducer = (acc, current) => {
   const [ok, ex] = acc
   let i
   if (!ex.length || (i = ex.indexOf(current)) == -1) {
@@ -28,7 +28,7 @@ const hasFile = (array, file) => {
 /**
  * @param {string[]} files
  */
-       const getKeys = (files, reverse) => {
+const getKeys = (files, reverse) => {
   const hasIndex = hasFile(files, 'index.md')
   const hasFooter = hasFile(files, 'footer.md')
 
