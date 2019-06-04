@@ -1,0 +1,70 @@
+[
+  {
+    "file": "test/fixture/directory/index.md",
+    "data": "# Index.md\n\nanything is something worth discovering\n"
+  },
+  {
+    "file": "separator",
+    "data": "\n\n"
+  },
+  {
+    "file": "test/fixture/directory/earth.md",
+    "data": "\n# Developers Developers\n\nDevelopers Developers\n"
+  },
+  {
+    "file": "separator",
+    "data": "\n\n"
+  },
+  {
+    "file": "test/fixture/directory/file.md",
+    "data": "\nHashtag OK Hueston.\n"
+  },
+  {
+    "file": "separator",
+    "data": "\n\n"
+  },
+  {
+    "file": "test/fixture/directory/new-directory/index.md",
+    "data": "\n# New Directory\n\nIt is very exciting.\n"
+  },
+  {
+    "file": "separator",
+    "data": "\n\n"
+  },
+  {
+    "file": "test/fixture/directory/new-directory/ice.md",
+    "data": "\n## Cold as 🇦🇶 Ice\n\nYour heart.\n"
+  },
+  {
+    "file": "separator",
+    "data": "\n\n"
+  },
+  {
+    "file": "test/fixture/directory/new-directory/queen.md",
+    "data": "\n## wrote\n\nwrote to the queen about my heartbreak but she didn't answer\n"
+  },
+  {
+    "file": "separator",
+    "data": "\n\n"
+  },
+  {
+    "file": "test/fixture/directory/new-directory/water.md",
+    "data": "\n## This is 🚰 water.\n\nIt is even older that @earth.\n"
+  },
+  {
+    "file": "separator",
+    "data": "\n\n"
+  },
+  {
+    "file": "test/fixture/directory/readme.md",
+    "data": "\n# Documentation is fascinating.\n\nWhere will we be\nwhen the code is gone\n"
+  },
+  {
+    "file": "separator",
+    "data": "\n\n"
+  },
+  {
+    "file": "test/fixture/directory/footer.md",
+    "data": "\n---\n\nKings of medicine."
+  }
+]

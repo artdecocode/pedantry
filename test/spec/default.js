@@ -1,4 +1,4 @@
-import { equal } from 'zoroaster/assert'
+import { equal } from '@zoroaster/assert'
 import { Transform } from 'stream'
 import Context from '../context'
 import Pedantry from '../../src'

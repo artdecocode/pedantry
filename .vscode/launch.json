@@ -11,14 +11,15 @@
       "program": "${workspaceFolder}/node_modules/.bin/zoroaster",
       "env": {
         "BABEL_ENV": "debug",
-        "ZOROASTER_TIMEOUT": "9999999",
         "NODE_DEBUG": "pedantry",
       },
       "console": "integratedTerminal",
       "args": [
         "test/spec",
-        "-b",
-        "-w"
+        "test/mask",
+        "-a",
+        "-w",
+        "-t", "99999999"
       ],
       "skipFiles": [
         "<node_internals>/**/*.js"
