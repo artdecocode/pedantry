@@ -1,3 +1,10 @@
+## 4 June 2019
+
+### [2.4.0](https://github.com/artdecocode/pedantry/compare/v2.3.2...v2.4.0)
+
+- [feature] Allow to ignore hidden files with the `ignoreHidden` option.
+- [deps] Upgrade testing framework to [zoroaster](https://contexttesting.com)@4.
+
 ## 18 April 2019
 
 ### [2.3.2](https://github.com/artdecocode/pedantry/compare/v2.3.1...v2.3.2)
