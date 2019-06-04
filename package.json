@@ -11,7 +11,7 @@
     "test": "yarn t test/spec test/mask",
     "test-build": "ALAMODE_ENV=test-build yarn test",
     "lint": "eslint .",
-    "doc": "NODE_DEBUG=doc doc documentary -o README.md",
+    "doc": "NODE_DEBUG=doc doc -o README.md",
     "d": "typal src/index.js",
     "b": "alamode src -o build -s",
     "build": "yarn-s d b doc",

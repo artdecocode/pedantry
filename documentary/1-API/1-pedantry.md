@@ -26,7 +26,6 @@ _Given the directory structure:_
 _The usage of **Pedantry** is as below:_
 
 %EXAMPLE: example/Pedantry, ../src => pedantry%
-
 %FORK-markdown example/Pedantry.js%
 
 %~ width="15"%

@@ -9,7 +9,6 @@ _With a simpler directory structure:_
 _It could be printed in reverse:_
 
 %EXAMPLE: example/reverse, ../src => pedantry%
-
 %FORK-markdown example/reverse%
 
 %~ width="15"%

@@ -5,4 +5,4 @@ To get access to the currently processed file, _Pedantry_ can be run in object m
 %EXAMPLE: example/object, ../src => pedantry%
 %FORK-fs example/object%
 
-%~%
+%~ width="15"%

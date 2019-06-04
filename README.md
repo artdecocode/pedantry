@@ -8,6 +8,8 @@ _Pedantry_ is a readable stream that puts together all files and nested director
 yarn add -E pedantry
 ```
 
+<p align="center"><a href="#table-of-contents"><img src="/.documentary/section-breaks/0.svg?sanitize=true"></a></p>
+
 ## Table Of Contents
 
 - [Table Of Contents](#table-of-contents)
@@ -18,7 +20,10 @@ yarn add -E pedantry
   * [Reverse Order](#reverse-order)
   * [Events](#events)
   * [Object Mode](#object-mode)
+- [Ignore Hidden](#ignore-hidden)
 - [Copyright](#copyright)
+
+<p align="center"><a href="#table-of-contents"><img src="/.documentary/section-breaks/1.svg?sanitize=true"></a></p>
 
 
 ## API
@@ -44,12 +49,13 @@ Create a new readable stream. Upon creation, `Pedantry` will start reading files
 
 __<a name="type-options">`Options`</a>__: Options for Pedantry.
 
-|      Name       |   Type    |                                                                                            Description                                                                                            | Default |
-| --------------- | --------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------- |
-| reverse         | _boolean_ | Whether to print files in reverse order, i.e., `30-file.md` before `1-file.md`.                                                                                                                   | `false` |
-| addNewLine      | _boolean_ | Add a `\n` symbol between the content of each file.                                                                                                                                               | `false` |
-| addBlankLine    | _boolean_ | Add a blank line between the content of each file, which is equivalent to inserting `\n\n`.                                                                                                       | `false` |
-| includeFilename | _boolean_ | When this is set to `true`, _Pedantry_ will write data in object mode, pushing an object with `file` and `data` properties. New and blank lines will have the `file` property set to `separator`. | `false` |
+|      Name       |       Type       |                                                                                            Description                                                                                            | Default |
+| --------------- | ---------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------- |
+| reverse         | <em>boolean</em> | Whether to print files in reverse order, i.e., `30-file.md` before `1-file.md`.                                                                                                                   | `false` |
+| addNewLine      | <em>boolean</em> | Add a `\n` symbol between the content of each file.                                                                                                                                               | `false` |
+| addBlankLine    | <em>boolean</em> | Add a blank line between the content of each file, which is equivalent to inserting `\n\n`.                                                                                                       | `false` |
+| includeFilename | <em>boolean</em> | When this is set to `true`, _Pedantry_ will write data in object mode, pushing an object with `file` and `data` properties. New and blank lines will have the `file` property set to `separator`. | `false` |
+| ignoreHidden    | <em>boolean</em> | Don't read files that start with the `.` symbol.                                                                                                                                                  | `false` |
 
 _Given the directory structure:_
 
@@ -71,7 +77,6 @@ import Pedantry from 'pedantry'
 const pedantry = new Pedantry('example/test')
 pedantry.pipe(process.stdout)
 ```
-
 ```markdown
 # index.md: Welcome to Quotes
 
@@ -122,7 +127,7 @@ off!”
 [source](https://www.goodreads.com/work/quotes/876183?page=2)
 ```
 
-<p align="center"><a href="#table-of-contents"><img src=".documentary/section-breaks/0.svg?sanitize=true" width="15"></a></p>
+<p align="center"><a href="#table-of-contents"><img src="/.documentary/section-breaks/2.svg?sanitize=true" width="15"></a></p>
 
 ### Reverse Order
 
@@ -150,7 +155,6 @@ const pedantry = new Pedantry('example/simple-test', {
 })
 pedantry.pipe(process.stdout)
 ```
-
 ```markdown
 index.md
 100-world.md
@@ -160,7 +164,7 @@ index.md
 footer.md
 ```
 
-<p align="center"><a href="#table-of-contents"><img src=".documentary/section-breaks/1.svg?sanitize=true" width="15"></a></p>
+<p align="center"><a href="#table-of-contents"><img src="/.documentary/section-breaks/3.svg?sanitize=true" width="15"></a></p>
 
 ### Events
 
@@ -172,7 +176,6 @@ import Pedantry from 'pedantry'
 const pedantry = new Pedantry('example/simple-test')
 pedantry.on('file', f => console.log(f))
 ```
-
 ```fs
 index.md
 1-file.md
@@ -182,7 +185,7 @@ index.md
 footer.md
 ```
 
-<p align="center"><a href="#table-of-contents"><img src=".documentary/section-breaks/2.svg?sanitize=true" width="15"></a></p>
+<p align="center"><a href="#table-of-contents"><img src="/.documentary/section-breaks/4.svg?sanitize=true" width="15"></a></p>
 
 ### Object Mode
 
@@ -221,7 +224,44 @@ pedantry.pipe(t)
 { file: 'example/simple-test/footer.md', data: 'footer.md' }
 ```
 
-<p align="center"><a href="#table-of-contents"><img src=".documentary/section-breaks/3.svg?sanitize=true"></a></p>
+<p align="center"><a href="#table-of-contents"><img src="/.documentary/section-breaks/5.svg?sanitize=true" width="15"></a></p>
+
+## Ignore Hidden
+
+To ignore hidden files, the `{ ignore: hidden }` option can be passed to _Pedantry_. By default, this is set to false.
+
+<table>
+<tr>The Source <a href="example/hidden.js"></a><th></th><th><a href="example/hidden"></a>The Tree</th></tr>
+<tr><td>
+
+```js
+import Pedantry from 'pedantry'
+
+const HIDDEN = 'example/hidden'
+const pedantry = new Pedantry(HIDDEN, {
+  ignoreHidden: true,
+})
+pedantry.pipe(process.stdout)
+```
+</td>
+<td>
+
+```m
+example/hidden
+└── 1.md
+```
+</td></tr>
+<tr><td colspan="2" align="center">The Output</td></tr>
+<tr><td colspan="2">
+
+```fs
+1.md: hello world
+```
+</td></tr>
+</table>
+
+
+<p align="center"><a href="#table-of-contents"><img src="/.documentary/section-breaks/6.svg?sanitize=true"></a></p>
 
 ## Copyright
 
@@ -242,3 +282,5 @@ pedantry.pipe(t)
     <th><a href="https://www.technation.sucks">Tech Nation Visa Sucks</a></th>
   </tr>
 </table>
+
+<p align="center"><a href="#table-of-contents"><img src="/.documentary/section-breaks/-1.svg?sanitize=true"></a></p>

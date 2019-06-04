@@ -8,6 +8,10 @@ _Pedantry_ is a readable stream that puts together all files and nested director
 yarn add -E pedantry
 ```
 
+%~%
+
 ## Table Of Contents
 
 %TOC%
+
+%~%
