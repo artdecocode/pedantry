@@ -11,7 +11,7 @@ To ignore hidden files, the `{ ignore: hidden }` option can be passed to _Pedant
 </td>
 <td>
 
-%TREE example/hidden%
+%TREE example/hidden -a%
 </td></tr>
 <tr><td colspan="2" align="center">The Output</td></tr>
 <tr><td colspan="2">

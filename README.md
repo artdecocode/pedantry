@@ -248,6 +248,7 @@ pedantry.pipe(process.stdout)
 
 ```m
 example/hidden
+├── .ignore
 └── 1.md
 ```
 </td></tr>
