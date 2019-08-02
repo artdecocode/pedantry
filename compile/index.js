@@ -1,3 +1,5 @@
+const _Pedantry = require('./pedantry')
+
 class Pedantry extends _Pedantry {
   /**
    * Upon creation, `Pedantry` will start reading files in the `source` directory recursively in the following order: the content of the `index.md` file will go first, then of all files and directories in the folder recursively in a sorted order, and the content of the `footer.md` file will go last if found.
