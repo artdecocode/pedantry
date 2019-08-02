@@ -1,3 +1,9 @@
+## 3 August 2019
+
+### [2.5.0](https://github.com/artdecocode/pedantry/compare/v2.4.0...v2.5.0)
+
+- [package] Compile with [_Depack_](https://compiler.page), add externs.
+
 ## 4 June 2019
 
 ### [2.4.0](https://github.com/artdecocode/pedantry/compare/v2.3.2...v2.4.0)
