@@ -8,7 +8,9 @@ _Pedantry_ is a readable stream that puts together all files and nested director
 yarn add -E pedantry
 ```
 
-<p align="center"><a href="#table-of-contents"><img src="/.documentary/section-breaks/0.svg?sanitize=true"></a></p>
+<p align="center"><a href="#table-of-contents">
+  <img src="/.documentary/section-breaks/0.svg?sanitize=true">
+</a></p>
 
 ## Table Of Contents
 
@@ -16,14 +18,16 @@ yarn add -E pedantry
 - [API](#api)
 - [class `Pedantry`](#class-pedantry)
   * [`constructor(source: string, options?: Options): Pedantry`](#constructorsource-stringoptions-options-pedantry)
-    * [`Options`](#type-options)
+    * [`_pedantry.Options`](#type-_pedantryoptions)
   * [Reverse Order](#reverse-order)
   * [Events](#events)
   * [Object Mode](#object-mode)
 - [Ignore Hidden](#ignore-hidden)
 - [Copyright](#copyright)
 
-<p align="center"><a href="#table-of-contents"><img src="/.documentary/section-breaks/1.svg?sanitize=true"></a></p>
+<p align="center"><a href="#table-of-contents">
+  <img src="/.documentary/section-breaks/1.svg?sanitize=true">
+</a></p>
 
 
 ## API
@@ -47,7 +51,7 @@ Create a new readable stream. Upon creation, `Pedantry` will start reading files
 1. then of all files and directories in the folder recursively in a sorted order (possibly in reverse),
 1. and the content of the `footer.md` file will go last if found.
 
-__<a name="type-options">`Options`</a>__: Options for Pedantry.
+<strong><a name="type-_pedantryoptions">`_pedantry.Options`</a></strong>: Options for Pedantry.
 
 |      Name       |       Type       |                                                                                            Description                                                                                            | Default |
 | --------------- | ---------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------- |
@@ -127,7 +131,9 @@ off!”
 [source](https://www.goodreads.com/work/quotes/876183?page=2)
 ```
 
-<p align="center"><a href="#table-of-contents"><img src="/.documentary/section-breaks/2.svg?sanitize=true" width="15"></a></p>
+<p align="center"><a href="#table-of-contents">
+  <img src="/.documentary/section-breaks/2.svg?sanitize=true" width="15">
+</a></p>
 
 ### Reverse Order
 
@@ -164,7 +170,9 @@ index.md
 footer.md
 ```
 
-<p align="center"><a href="#table-of-contents"><img src="/.documentary/section-breaks/3.svg?sanitize=true" width="15"></a></p>
+<p align="center"><a href="#table-of-contents">
+  <img src="/.documentary/section-breaks/3.svg?sanitize=true" width="15">
+</a></p>
 
 ### Events
 
@@ -185,7 +193,9 @@ index.md
 footer.md
 ```
 
-<p align="center"><a href="#table-of-contents"><img src="/.documentary/section-breaks/4.svg?sanitize=true" width="15"></a></p>
+<p align="center"><a href="#table-of-contents">
+  <img src="/.documentary/section-breaks/4.svg?sanitize=true" width="15">
+</a></p>
 
 ### Object Mode
 
@@ -224,7 +234,9 @@ pedantry.pipe(t)
 { file: 'example/simple-test/footer.md', data: 'footer.md' }
 ```
 
-<p align="center"><a href="#table-of-contents"><img src="/.documentary/section-breaks/5.svg?sanitize=true" width="15"></a></p>
+<p align="center"><a href="#table-of-contents">
+  <img src="/.documentary/section-breaks/5.svg?sanitize=true" width="15">
+</a></p>
 
 ## Ignore Hidden
 
@@ -262,7 +274,9 @@ example/hidden
 </table>
 
 
-<p align="center"><a href="#table-of-contents"><img src="/.documentary/section-breaks/6.svg?sanitize=true"></a></p>
+<p align="center"><a href="#table-of-contents">
+  <img src="/.documentary/section-breaks/6.svg?sanitize=true">
+</a></p>
 
 ## Copyright
 
@@ -270,18 +284,21 @@ example/hidden
   <tr>
     <th>
       <a href="https://artd.eco">
-        <img src="https://raw.githubusercontent.com/wrote/wrote/master/images/artdeco.png" alt="Art Deco" />
+        <img width="100" src="https://raw.githubusercontent.com/wrote/wrote/master/images/artdeco.png"
+          alt="Art Deco">
       </a>
     </th>
     <th>© <a href="https://artd.eco">Art Deco</a>   2019</th>
     <th>
       <a href="https://www.technation.sucks" title="Tech Nation Visa">
-        <img src="https://raw.githubusercontent.com/artdecoweb/www.technation.sucks/master/anim.gif"
-          alt="Tech Nation Visa" />
+        <img width="100" src="https://raw.githubusercontent.com/idiocc/cookies/master/wiki/arch4.jpg"
+          alt="Tech Nation Visa">
       </a>
     </th>
     <th><a href="https://www.technation.sucks">Tech Nation Visa Sucks</a></th>
   </tr>
 </table>
 
-<p align="center"><a href="#table-of-contents"><img src="/.documentary/section-breaks/-1.svg?sanitize=true"></a></p>
+<p align="center"><a href="#table-of-contents">
+  <img src="/.documentary/section-breaks/-1.svg?sanitize=true">
+</a></p>
