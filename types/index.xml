@@ -1,5 +1,5 @@
-<types>
-  <type name="Options" desc="Options for Pedantry.">
+<types namespace="_pedantry">
+  <type record name="Options" desc="Options for Pedantry.">
     <prop boolean name="reverse" default="false">
       Whether to print files in reverse order, i.e., `30-file.md` before `1-file.md`.
     </prop>

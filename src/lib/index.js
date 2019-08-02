@@ -1,6 +1,6 @@
 /**
  * Exclude items from the array
- * @param {[string[], string[]]} acc left to exclude, and non-excluded
+ * @param {!Array<!Array<string>, !Array<string>>} acc left to exclude, and non-excluded
  * @param {string} current
  */
 export const excludeReducer = (acc, current) => {
@@ -26,7 +26,8 @@ const hasFile = (array, file) => {
 }
 
 /**
- * @param {string[]} files
+ * @param {!Array<string>} files
+ * @param {boolean} [reverse]
  */
 export const getKeys = (files, reverse) => {
   const hasIndex = hasFile(files, 'index.md')

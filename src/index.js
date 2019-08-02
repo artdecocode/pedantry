@@ -41,7 +41,8 @@ const processDir = async ({
 }
 
 /**
- * @param {{ stream: Pedantry}} options
+ * @param {Object} options
+ * @param {Pedantry} options.stream
  */
 const processFile = async (options) => {
   const {
@@ -83,15 +84,9 @@ const processFile = async (options) => {
 
 export default class Pedantry extends PassThrough {
   /**
-   * @constructor
    * Upon creation, `Pedantry` will start reading files in the `source` directory recursively in the following order: the content of the `index.md` file will go first, then of all files and directories in the folder recursively in a sorted order, and the content of the `footer.md` file will go last if found.
    * @param {string} source Path to the root directory.
-   * @param {Options} options Options for Pedantry.
-   * @param {boolean} [options.reverse=false] Whether to print files in reverse order, i.e., `30-file.md` before `1-file.md`. Default `false`.
-   * @param {boolean} [options.addNewLine=false] Add a `\n` symbol between the content of each file. Default `false`.
-   * @param {boolean} [options.addBlankLine=false] Add a blank line between the content of each file, which is equivalent to inserting `\n\n`. Default `false`.
-   * @param {boolean} [options.includeFilename=false] When this is set to `true`, _Pedantry_ will write data in object mode, pushing an object with `file` and `data` properties. New and blank lines will have the `file` property set to `separator`. Default `false`.
-   * @param {boolean} [options.ignoreHidden=false] Don't read files that start with the `.` symbol. Default `false`.
+   * @param {_pedantry.Options} [options] Options for Pedantry.
    */
   constructor(source, options = {}) {
     const {
@@ -135,19 +130,13 @@ export default class Pedantry extends PassThrough {
   }
 }
 
-/**
- * A file event.
- * @event Pedantry#file
- * @param {string} file A path to the file currently being processed relative to the `Pedantry` source.
- */
+// /**
+//  * A file event.
+//  * @event Pedantry#file
+//  * @param {string} file A path to the file currently being processed relative to the `Pedantry` source.
+//  */
 
-/* typal types/index.xml closure */
 /**
  * @suppress {nonStandardJsDocs}
- * @typedef {Object} Options Options for Pedantry.
- * @prop {boolean} [reverse=false] Whether to print files in reverse order, i.e., `30-file.md` before `1-file.md`. Default `false`.
- * @prop {boolean} [addNewLine=false] Add a `\n` symbol between the content of each file. Default `false`.
- * @prop {boolean} [addBlankLine=false] Add a blank line between the content of each file, which is equivalent to inserting `\n\n`. Default `false`.
- * @prop {boolean} [includeFilename=false] When this is set to `true`, _Pedantry_ will write data in object mode, pushing an object with `file` and `data` properties. New and blank lines will have the `file` property set to `separator`. Default `false`.
- * @prop {boolean} [ignoreHidden=false] Don't read files that start with the `.` symbol. Default `false`.
+ * @typedef {import('..').Options} _pedantry.Options
  */
