@@ -1,5 +1,9 @@
 ## 3 February 2020
 
+### [2.5.2](https://github.com/artdecocode/pedantry/compare/v2.5.1...v2.5.2)
+
+- [deps] Move _Depack_ to `dev`.
+
 ### [2.5.1](https://github.com/artdecocode/pedantry/compare/v2.5.0...v2.5.1)
 
 - [deps] Upgrade dependencies.

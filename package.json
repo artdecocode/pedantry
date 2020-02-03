@@ -52,6 +52,7 @@
     "alamode": "^3.3.2",
     "catchment": "^3.3.0",
     "documentary": "^1.35.11",
+    "depack": "^1.1.0",
     "eslint-config-artdeco": "1.0.1",
     "makepromise": "^3.2.0",
     "yarn-s": "1.2.3",
@@ -59,8 +60,5 @@
   },
   "srcDependencies": {
     "@wrote/read-dir-structure": "^1.2.0"
-  },
-  "dependencies": {
-    "depack": "^1.1.0"
   }
 }
