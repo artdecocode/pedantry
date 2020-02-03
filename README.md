@@ -1,6 +1,6 @@
 # pedantry
 
-[![npm version](https://badge.fury.io/js/pedantry.svg)](https://npmjs.org/package/pedantry)
+[![npm version](https://badge.fury.io/js/pedantry.svg)](https://www.npmjs.com/package/pedantry)
 
 _Pedantry_ is a readable stream that puts together all files and nested directories in the given directory in sorted order (`1.md`, `2.md`, `3/1.md`, `3/1.5.md`, `10.md`, _etc_). It will also read `index.md` and `footer.md` as first and last files respectively if found.
 
@@ -43,7 +43,7 @@ import Pedantry from 'pedantry'
 
 A _Pedantry_ instance reads files in order one-by-one and pushes the results further down the pipe.
 
-### `constructor(`<br/>&nbsp;&nbsp;`source: string,`<br/>&nbsp;&nbsp;`options?: Options,`<br/>`): Pedantry`
+### <code><ins>constructor</ins>(</code><sub><br/>&nbsp;&nbsp;`source: string,`<br/>&nbsp;&nbsp;`options?: Options,`<br/></sub><code>): <i>Pedantry</i></code>
 
 Create a new readable stream. Upon creation, `Pedantry` will start reading files in the `source` directory recursively in the following order:
 
@@ -225,11 +225,9 @@ pedantry.pipe(t)
 { file: 'separator', data: '\n\n' }
 { file: 'example/simple-test/2-test.md', data: '2-test.md\n' }
 { file: 'separator', data: '\n\n' }
-{ file: 'example/simple-test/21-hello.md',
-  data: '21-hello.md\n' }
+{ file: 'example/simple-test/21-hello.md', data: '21-hello.md\n' }
 { file: 'separator', data: '\n\n' }
-{ file: 'example/simple-test/100-world.md',
-  data: '100-world.md\n' }
+{ file: 'example/simple-test/100-world.md', data: '100-world.md\n' }
 { file: 'separator', data: '\n\n' }
 { file: 'example/simple-test/footer.md', data: 'footer.md' }
 ```
@@ -283,19 +281,12 @@ example/hidden
 <table>
   <tr>
     <th>
-      <a href="https://artd.eco">
+      <a href="https://www.artd.eco">
         <img width="100" src="https://raw.githubusercontent.com/wrote/wrote/master/images/artdeco.png"
           alt="Art Deco">
       </a>
     </th>
-    <th>© <a href="https://artd.eco">Art Deco</a>   2019</th>
-    <th>
-      <a href="https://www.technation.sucks" title="Tech Nation Visa">
-        <img width="100" src="https://raw.githubusercontent.com/idiocc/cookies/master/wiki/arch4.jpg"
-          alt="Tech Nation Visa">
-      </a>
-    </th>
-    <th><a href="https://www.technation.sucks">Tech Nation Visa Sucks</a></th>
+    <th>© <a href="https://www.artd.eco">Art Deco™</a>   2020</th>
   </tr>
 </table>
 

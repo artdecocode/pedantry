@@ -9,7 +9,7 @@
     "spec": "yarn t test/spec",
     "mask": "yarn t test/mask",
     "test": "yarn t test/spec test/mask",
-    "compile": "depack-dev src/depack -o compile/pedantry.js -c -a -p -s --source_map_include_content -O 2018",
+    "lib": "depack src/depack -o compile/pedantry.js -c -a -p -s --source_map_include_content",
     "test-compile": "ALAMODE_ENV=test-compile yarn test",
     "lint": "eslint .",
     "doc": "NODE_DEBUG=doc doc -o README.md",
@@ -48,14 +48,19 @@
   },
   "homepage": "https://github.com/artdecocode/pedantry#readme",
   "devDependencies": {
-    "alamode": "^2.3.6",
+    "@wrote/read-dir-structure": "^1.3.1",
+    "alamode": "^3.3.2",
     "catchment": "^3.3.0",
-    "documentary": "^1.29.0",
+    "documentary": "^1.35.11",
     "eslint-config-artdeco": "1.0.1",
-    "yarn-s": "1.1.0",
-    "zoroaster": "^4.1.1-alpha"
+    "makepromise": "^3.2.0",
+    "yarn-s": "1.2.3",
+    "zoroaster": "^4.2.0"
   },
   "srcDependencies": {
     "@wrote/read-dir-structure": "^1.2.0"
+  },
+  "dependencies": {
+    "depack": "^1.1.0"
   }
 }
