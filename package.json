@@ -1,6 +1,6 @@
 {
   "name": "pedantry",
-  "version": "2.5.0",
+  "version": "2.5.1",
   "description": "Read a directory recursively as a stream in Node.js.",
   "main": "compile/index.js",
   "module": "src/index.js",
